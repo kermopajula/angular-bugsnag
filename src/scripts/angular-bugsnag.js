@@ -91,7 +91,7 @@
                 },
                 $exceptionHandler: function () {
                     this.$get = ['$log', 'bugsnag', function ($log, bugsnag) {
-                        return function (exception, cause) {
+                        return function (exception) {
                             $log.error.apply($log, arguments);
                             try {
                                 bugsnag.fixContext();
@@ -102,6 +102,10 @@
                                 }
                             } catch (e) {
                                 $log.error(e);
+                            }
+
+            			    if (exception.name === 'AssertionError') {
+                                throw exception;
                             }
                         };
                     }];
