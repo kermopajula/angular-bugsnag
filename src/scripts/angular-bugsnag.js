@@ -104,9 +104,7 @@
                                 $log.error(e);
                             }
 
-            			    if (exception.name === 'AssertionError') {
-                                throw exception;
-                            }
+                            throw exception;
                         };
                     }];
                 }
